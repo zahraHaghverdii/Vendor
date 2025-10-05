@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* font family */
+@font-face {
+  font-family: "Estedad-Medium";
+  src: url("/fonts/Estedad-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* dark */
+/* :root {
+  --color: #fff;
+  --background-color: #364153;
+
+  --background-color--1: #213547;
+
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+
+  --color-dark--0: #fcfcfc;
+  --color-dark--1: #f0f0f0;
+  --color-dark--2: #aaa;
+
+  --color-light--1: #42484d;
+  --color-light--2: #2d3439;
+  --color-light--3: #242a2e;
+
+  --font-family: "Estedad-Medium";
+} */
+
+:root {
+  --background-color: #f3f1f1;
+
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+  --color-error: #e63946;
+
+  --color-dark--0: #242a2e;
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: #d6dee0;
+}
+
+/* light */
+@media (prefers-color-scheme: light) {
+  /* :root {
+    --color: #213547;
+    --background-color: #ffffff;
+
+    --background-color--1: #213547;
+    --color--1: #fff;
+
+    --color-brand--1: #ff9800;
+    --color-brand--2: #00a859;
+
+    --color-dark--0: #111111;
+    --color-dark--1: #333333;
+    --color-dark--2: #666666;
+
+    --color-light--1: #f5f5f5;
+    --color-light--2: #e0e0e0;
+    --color-light--3: #cccccc;
+  } */
+
+  :root {
+    --background-color: #f3f1f1;
+
+    --color-brand--1: #ffb545;
+    --color-brand--2: #00c46a;
+
+    --color-dark--0: #242a2e;
+    --color-dark--1: #2d3439;
+    --color-dark--2: #42484d;
+    --color-light--1: #aaa;
+    --color-light--2: #ececec;
+    --color-light--3: #d6dee0;
+    --font-family: "Estedad-Medium";
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  /* Creating animations for dark mode */
+  transition: background-color 0.3s, border 0.3s;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color--light--2);
+  background-color: var(--background-color);
+  font-weight: 400;
+  line-height: 1.6;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  line-height: 1.5;
+  font-size: 1.6rem;
+}
+
+label {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  font-family: inherit;
+  border: none;
+  transition: all 0.2s;
+  color: var(--color);
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  outline-offset: -1px;
+}
+
+/* Parent selector, finally 😃 */
+button:has(svg) {
+  line-height: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+img {
+  max-width: 100%;
+  /* For dark mode */
+  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
+}
+
+/* rtl */
+.rtl {
+  direction: rtl;
+}
+.ltr {
+  direction: ltr;
+}
+
+/* scrollbar-style */
+.scrollbar-style::-webkit-scrollbar {
+  display: none;
+}
