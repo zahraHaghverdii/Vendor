@@ -1,5 +1,5 @@
-import type { User } from "../types/Users";
-import { generateToken } from "../utils/jwt";
+import type { User, UserLoginData } from "../types/Users";
+import { v4 as uuidv4 } from "uuid";
 
 // getUser
 const BASE_URL = import.meta.env.VITE_API_URL_BAS;
@@ -30,8 +30,34 @@ export async function getAllUsers() {
   }
 }
 
+// fetch All User
+export async function getIdUser(id: number) {
+  try {
+    const res = await fetch(`${BASE_URL}/user/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`HTTP ${res.status}: ${errorText}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error("خطا در برقراری ارتباط با سرور");
+    }
+  }
+}
+
 // fetch login
-export async function LoginUser({ email, password }: User) {
+export async function LoginUser({ email, password }: UserLoginData) {
   try {
     const users = await getAllUsers();
     const user = users.find(
@@ -39,9 +65,9 @@ export async function LoginUser({ email, password }: User) {
     );
     if (!user) throw new Error("ایمیل یا رمز عبور اشتباه است");
 
-    const token = generateToken(user);
-
-    return { user, token };
+    // توکن ست بشه و ارسال بشه
+    const fakeToken = uuidv4();
+    return { user, token: fakeToken };
   } catch (error) {
     if (error instanceof Error) {
       throw error;
@@ -65,7 +91,8 @@ export async function SignupUser({ username, email, password }: User) {
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}:خطا در برقراری ارتباط با سرور`);
     }
-    return res.json();
+    const user = res.json();
+    return user;
   } catch (error) {
     if (error instanceof Error) {
       throw error;

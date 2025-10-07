@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 // fetch Vendor
 export async function getAllVendors() {
   try {
-    const res = await fetch(`${BASE_URL}/vendors`, {
+    const res = await fetch(`${BASE_URL}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export async function getAllVendors() {
 // fetch id vendor
 export async function getIdVendor(id: number | null) {
   try {
-    const res = await fetch(`${BASE_URL}/vendors/${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export async function getIdVendor(id: number | null) {
 //Add Vendor
 export async function AddVendor(vendorData: Vendors) {
   try {
-    const res = await fetch(`${BASE_URL}/vendors`, {
+    const res = await fetch(`${BASE_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export async function AddVendor(vendorData: Vendors) {
 // Delete Vendor
 export async function DeleteVendor(id: number | undefined) {
   try {
-    const res = await fetch(`${BASE_URL}/vendors/${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export async function DeleteVendor(id: number | undefined) {
 // Edit Vendor
 export async function EditVendor(id: number | undefined, data: Vendors) {
   try {
-    const res = await fetch(`${BASE_URL}/vendors/${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
       body: JSON.stringify(data),
     });
@@ -134,8 +134,8 @@ export async function SearchVendorFetch(companyName: string) {
   if (!companyName) return [];
 
   try {
-    // const res = await fetch(`${BASE_URL}/vendors?companyName=${companyName}`, {
-    const res = await fetch(`${BASE_URL}/vendors`, {
+    // const res = await fetch(`${BASE_URL}/?companyName=${companyName}`, {
+    const res = await fetch(`${BASE_URL}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

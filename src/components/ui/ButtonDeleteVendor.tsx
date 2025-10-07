@@ -3,6 +3,7 @@ import { Trash } from "iconsax-react";
 import { useVendorModalStor } from "../../store/useVendorModalStor";
 import { useAuth } from "../../utils/useAuth";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 interface TButtonDelete {
   openId: number;
@@ -10,17 +11,20 @@ interface TButtonDelete {
 
 export default function ButtonDeleteVendor({ openId }: TButtonDelete) {
   const { openModal } = useVendorModalStor();
+  const { isAuthenticated, checkAuth } = useAuth();
   const navigate = useNavigate();
-  // check login
-  const user = useAuth();
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   return (
     <>
       <div
         className="flex gap-x-3 items-center cursor-pointer"
         onClick={() => {
-          if (!user) {
-            navigate("/login"); // ریدایرکت
+          if (!isAuthenticated) {
+            navigate("/login");
           } else {
             openModal("delete", openId); // باز کردن مودال
           }

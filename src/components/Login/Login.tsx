@@ -6,14 +6,14 @@ import { useForm } from "react-hook-form";
 import type { User } from "../../types/Users";
 import useSignup from "../../hooks/useSignup";
 import SpinnerBtn from "../ui/SpinnerBtn";
-import { useUserStore } from "../../store/useUserStore";
 import useLogin from "../../hooks/useLogin";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   const [mode, setMode] = useState<"login" | "signup" | "register">("login");
   const { signupUser, isPendingSignup } = useSignup();
   const { loginUser, isLoadingLogin } = useLogin();
-  const { setUserName } = useUserStore();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -27,13 +27,14 @@ export default function Login() {
       signupUser(data, {
         onSuccess: () => {
           reset();
-          setUserName(data.username);
+          setMode("login");
         },
       });
     } else if (mode === "login") {
       loginUser(data, {
         onSuccess: () => {
           reset();
+          return navigate("/");
         },
       });
     }

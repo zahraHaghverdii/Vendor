@@ -8,15 +8,22 @@
     "server": "json-server --watch src/data/vendors.json --port 8000 ",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "servers": "npm-run-all --parallel comments-server discound-server products-server"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
     "@tanstack/react-query": "^5.87.4",
     "@tanstack/react-query-devtools": "^5.87.4",
     "axios": "^1.11.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "framer-motion": "^12.23.12",
     "iconsax-react": "^0.0.8",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "react": "^19.0.0-rc.1",
     "react-dom": "^19.0.0-rc.1",
@@ -26,9 +33,13 @@
     "react-router": "^7.9.1",
     "react-router-dom": "^7.8.2",
     "tailwindcss": "^4.1.12",
+    "uuid": "^13.0.0",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.9",
+    "@types/express": "^5.0.3",
+    "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/leaflet": "^1.9.20",
     "@types/react": "^19.1.12",
@@ -37,6 +48,7 @@
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "json-server": "^1.0.0-beta.3",
+    "ts-node": "^10.9.2",
     "typescript": "~5.8.3",
     "vite": "^7.1.2"
   }

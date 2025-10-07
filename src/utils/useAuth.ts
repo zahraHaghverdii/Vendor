@@ -1,20 +1,9 @@
-// hooks/useAuth.ts
+import { useAuthStore } from "../store/useAuthStore";
+
 export function useAuth() {
-  const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("token="))
-    ?.split("=")[1];
+  const { user, token, checkAuth, logout } = useAuthStore();
 
-  if (!token) return null;
+  const isAuthenticated = Boolean(token);
 
-  try {
-    const payload = JSON.parse(atob(token));
-    if (payload.exp < Date.now()) {
-      // منقضی شده
-      return null;
-    }
-    return payload;
-  } catch {
-    return null;
-  }
+  return { user, token, isAuthenticated, checkAuth, logout };
 }

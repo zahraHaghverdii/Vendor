@@ -12,8 +12,6 @@ import useIdVendorFetch from "../../hooks/useIdVendorFetch";
 import SpinnerBtn from "./SpinnerBtn";
 import InputImage from "./InputImage";
 import GetMapInput from "../Map/GetMapInput";
-import { useAuth } from "../../utils/useAuth";
-import { Navigate } from "react-router";
 
 export default function ModalAddAndEdite() {
   const { mode, closeModal, vendorId } = useVendorModalStor();
@@ -42,9 +40,6 @@ export default function ModalAddAndEdite() {
       location: { lat: 0, lng: 0 },
     },
   });
-
-  // check login
-  const user = useAuth();
 
   // loading
   const isLoading = VendorId?.id ? isPendingEdit : isPending;
@@ -90,8 +85,6 @@ export default function ModalAddAndEdite() {
       });
     }
   }
-
-  if (!user) return <Navigate to="/login" />;
 
   return (
     <>
