@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://zahrahaghverii.github.io/Vendor",
+  "homepage": "https://zahrahaghverdii.github.io/Vendor/",
   "scripts": {
     "dev": "vite",
     "server": "json-server --watch src/data/vendors.json --port 8000 ",
@@ -48,6 +48,7 @@
     "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "gh-pages": "^6.3.0",
     "json-server": "^1.0.0-beta.3",
     "ts-node": "^10.9.2",
     "typescript": "~5.8.3",
