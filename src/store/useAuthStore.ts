@@ -20,7 +20,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   token: null,
 
   login: (user, token) => {
-    Cookies.set("token", token, { expires: 7 }); // ذخیره توکن در کوکی
+    Cookies.set("token", token, { expires: 1 }); // ذخیره توکن در کوکی
     set({ user, token });
   },
 

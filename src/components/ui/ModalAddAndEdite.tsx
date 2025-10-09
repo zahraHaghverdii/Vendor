@@ -32,12 +32,12 @@ export default function ModalAddAndEdite() {
   } = useForm<Vendors>({
     mode: "onSubmit",
     defaultValues: {
+      address: "",
       companyName: "",
       manager: "",
-      address: "",
       phone: "",
       logo: "",
-      location: { lat: 0, lng: 0 },
+      location: { lat: 35.6892, lng: 51.389 },
     },
   });
 
@@ -46,7 +46,7 @@ export default function ModalAddAndEdite() {
 
   // وقتی VendorId تغییر کرد => فرم رو دوباره مقداردهی کن
   useEffect(() => {
-    if (mode === "edit") {
+    if (mode === "edit" && VendorId?.id) {
       reset({
         companyName: VendorId?.companyName,
         manager: VendorId?.manager,

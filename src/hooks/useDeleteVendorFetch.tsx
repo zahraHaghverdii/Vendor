@@ -17,7 +17,7 @@ export default function useDeleteVendorFetch(id: number | undefined) {
           (old) => old?.filter((v) => v.id !== id) ?? old
         );
         toast.success("فروشنده با موفقیت حذف شد.");
-        // queryClient.invalidateQueries({ queryKey: ["Vendors"] }); // ریفرش لیست
+        // queryClient.invalidateQueries({ queryKey: ["Vendors", id] }); // ریفرش لیست
       },
       onError: (err: Error) => {
         toast.error(err.message);

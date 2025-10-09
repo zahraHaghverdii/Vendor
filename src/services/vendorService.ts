@@ -108,23 +108,27 @@ export async function DeleteVendor(id: number | undefined) {
 
 // Edit Vendor
 export async function EditVendor(id: number | undefined, data: Vendors) {
+  if (id === undefined) throw new Error("شناسه فروشنده مشخص نشده");
+
   try {
     const res = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
-      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, id }), // حتما id رو هم بفرست
     });
 
     if (!res.ok) {
       const errorText = await res.text();
       throw new Error(`HTTP ${res.status}: ${errorText}`);
     }
+
     return true;
   } catch (error) {
-    if (error instanceof Error) {
-      throw error;
-    } else {
-      throw new Error("خطا در برقراری ارتباط با سرور");
-    }
+    throw error instanceof Error
+      ? error
+      : new Error("خطا در برقراری ارتباط با سرور");
   }
 }
 
