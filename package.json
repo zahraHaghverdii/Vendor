@@ -3,15 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://zahrahaghverii.github.io/Vendor",
   "scripts": {
     "dev": "vite",
     "server": "json-server --watch src/data/vendors.json --port 8000 ",
     "build": "node --max-old-space-size=4096 node_modules/vite/bin/vite.js build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "servers": "npm-run-all --parallel comments-server discound-server products-server",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "servers": "npm-run-all --parallel comments-server discound-server products-server"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
